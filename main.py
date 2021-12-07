@@ -5,6 +5,7 @@ import requests
 url = requests.get(input("Enter url: "))
 
 if url.status_code == 200:
+    print("Processing.......")
     soup = BeautifulSoup(url.content, "lxml")
 
     title = "".join(list(map(lambda x: "_" if x in "\/," else x, (soup.find("span",
