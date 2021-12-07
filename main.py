@@ -1,4 +1,3 @@
-from urllib.request import urlopen
 from bs4 import BeautifulSoup
 from PIL import Image
 import requests
