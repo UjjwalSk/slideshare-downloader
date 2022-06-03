@@ -10,11 +10,11 @@ if url.status_code == 200:
 
     title = "".join(list(map(lambda x: "_" if x in "\/," else x, (soup.find("span",
                     attrs={"class": "j-title-breadcrumb"}).text).strip()+".pdf")))
-    imgs = soup.findAll("img", attrs={"class": "slide_image"})
+    imgs = soup.findAll("img", attrs={"class": "slide-image"})
 
     for i in range(len(imgs)):
         imgs[i] = Image.open(requests.get(
-            imgs[i]["data-full"], stream=True).raw)
+            (imgs[i]["srcset"]).split(",")[-1].split(' ')[1], stream=True).raw)
 
     imgs[0].save(title, save_all=True, append_images=imgs[1:])
 
